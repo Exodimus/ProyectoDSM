@@ -1,4 +1,16 @@
 # ProyectoDSM
+Trello
+https://trello.com/b/EfumkcuG/pawcarecontrol
+
+Figma
+https://www.figma.com/file/w7hkukESgCjtH5IarFBCIH/DSM?type=design&node-id=0-1&mode=design
+
+Licencia de proyecto:
+
+Este proyecto está bajo la licencia Reconocimiento-No Comercial (by-nc), que establece:
+
+Esta licencia permite la generación de obras derivadas siempre que no se haga un uso comercial de las mismas. Tampoco se puede utilizar la obra original con finalidades comerciales.
+
 ## ✍️ Autores
 | Nombre    | Carnet | Usuario de GitHub |
 |-----------|--------|-------------------|
