@@ -1,8 +1,10 @@
 # ProyectoDSM
 Trello
+
 https://trello.com/b/EfumkcuG/pawcarecontrol
 
 Figma
+
 https://www.figma.com/file/w7hkukESgCjtH5IarFBCIH/DSM?type=design&node-id=0-1&mode=design
 
 Licencia de proyecto:
