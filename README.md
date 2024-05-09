@@ -7,6 +7,9 @@ Figma
 
 https://www.figma.com/file/w7hkukESgCjtH5IarFBCIH/DSM?type=design&node-id=0-1&mode=design
 
+Manual Tecnico
+
+
 Licencia de proyecto:
 
 Este proyecto está bajo la licencia Reconocimiento-No Comercial (by-nc), que establece:
