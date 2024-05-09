@@ -3,6 +3,8 @@ package com.udb.splash
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
