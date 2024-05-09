@@ -7,8 +7,9 @@ Figma
 
 https://www.figma.com/file/w7hkukESgCjtH5IarFBCIH/DSM?type=design&node-id=0-1&mode=design
 
-Manual Tecnico
+Back End API Proyecto/manual/video
 
+https://github.com/MarroquinG/DSM941-BackEnd-API-
 
 Licencia de proyecto:
 
