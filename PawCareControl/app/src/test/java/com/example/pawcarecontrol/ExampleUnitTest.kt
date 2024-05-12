@@ -1,4 +1,4 @@
-package com.udb.splash
+package com.example.pawcarecontrol
 
 import org.junit.Test
 
