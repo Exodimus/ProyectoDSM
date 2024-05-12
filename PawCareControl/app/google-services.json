@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:346890476680:android:018539dd5bd174b648933d",
         "android_client_info": {
-          "package_name": "com.udb.splash"
+          "package_name": "com.example.pawcarecontrol"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "346890476680-1oknnoimuaif2n0iasl6si62min4flj2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.udb.splash",
+            "package_name": "com.example.pawcarecontrol",
             "certificate_hash": "6cc8faccc4412b9ec992a86188c824f092efa14e"
           }
         },
