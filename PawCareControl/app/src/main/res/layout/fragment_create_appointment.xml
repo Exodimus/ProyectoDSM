@@ -27,10 +27,55 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/inika"
+            android:textStyle="bold"
             android:text="Registro de Citas"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp" />
+
+            <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_input"
+                    app:layout_constraintTop_toBottomOf="@id/imageView2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
+
+            <AutoCompleteTextView
+                    android:id="@+id/mascota_input"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="Mascota"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:background="@drawable/shape_rounded_input"
+                    app:layout_constraintTop_toBottomOf="@id/calendarView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
+
+            <AutoCompleteTextView
+                    android:id="@+id/doctor_input"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="Doctor"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:background="@drawable/shape_rounded_input"
+                    app:layout_constraintTop_toBottomOf="@id/calendarView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
 
             <Button
                 android:id="@+id/btnAddAppointment"
@@ -41,6 +86,7 @@
                 android:fontFamily="@font/inika"
                 android:paddingHorizontal="10dp"
                 android:text="Guardar"
+                android:layout_marginTop="30dp"
                 android:textSize="21sp" />
 
         </LinearLayout>
