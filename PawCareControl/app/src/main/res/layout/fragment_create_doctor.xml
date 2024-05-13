@@ -93,6 +93,104 @@
 
             </LinearLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"
+                android:layout_marginBottom="30dp"
+                app:boxCollapsedPaddingTop="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_input"
+                    android:fontFamily="@font/inika"
+                    android:textSize="16sp"
+                    android:paddingVertical="13dp"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:layout_marginBottom="30dp"
+                app:boxCollapsedPaddingTop="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_input"
+                    android:fontFamily="@font/inika"
+                    android:inputType="textPassword"
+                    android:textSize="16sp"
+                    android:paddingVertical="13dp"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="DUI"
+                android:layout_marginBottom="30dp"
+                app:boxCollapsedPaddingTop="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputDUI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_input"
+                    android:fontFamily="@font/inika"
+                    android:textSize="16sp"
+                    android:paddingVertical="13dp"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nacimiento"
+                android:layout_marginBottom="30dp"
+                app:boxCollapsedPaddingTop="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputBirthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_input"
+                    android:fontFamily="@font/inika"
+                    android:paddingVertical="13dp"
+                    android:focusable="false"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputGender"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:hint="Sexo"
+                app:boxCollapsedPaddingTop="0dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteGenders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rounded_input"
+                    android:fontFamily="@font/inika"
+                    android:inputType="none"
+                    android:paddingVertical="13dp"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/btnAddDoctor"
                 android:layout_width="match_parent"
