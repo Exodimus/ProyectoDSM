@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:346890476680:android:018539dd5bd174b648933d",
+        "mobilesdk_app_id": "1:346890476680:android:ee5642ad62dc3dbb48933d",
         "android_client_info": {
           "package_name": "com.example.pawcarecontrol"
         }
       },
       "oauth_client": [
         {
-          "client_id": "346890476680-1oknnoimuaif2n0iasl6si62min4flj2.apps.googleusercontent.com",
+          "client_id": "346890476680-dbu53v339u78tc3m1emakroar2narja8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.pawcarecontrol",
