@@ -7,6 +7,9 @@ Figma
 
 https://www.figma.com/file/w7hkukESgCjtH5IarFBCIH/DSM?type=design&node-id=0-1&mode=design
 
+Video explicativo
+https://drive.google.com/drive/folders/1KLYXHWh-4TlG2uxkAyhAjBNJTZq9ezaG?usp=sharing
+
 Back End API Proyecto/manual/video
 
 https://github.com/MarroquinG/DSM941-BackEnd-API-
