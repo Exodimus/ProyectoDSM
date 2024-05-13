@@ -35,9 +35,9 @@
 
             <CalendarView
                     android:id="@+id/calendarView"
-                    android:layout_width="300dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_input"
+                    android:background="@drawable/shape_rounded_box"
                     app:layout_constraintTop_toBottomOf="@id/imageView2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -45,49 +45,57 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"/>
 
-            <AutoCompleteTextView
-                    android:id="@+id/mascota_input"
-                    android:layout_width="170dp"
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="Mascota"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:background="@drawable/shape_rounded_input"
-                    app:layout_constraintTop_toBottomOf="@id/calendarView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"/>
+                    android:hint="Mascota"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="20dp"
+                    app:boxCollapsedPaddingTop="0dp">
 
-            <AutoCompleteTextView
-                    android:id="@+id/doctor_input"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="Doctor"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:background="@drawable/shape_rounded_input"
-                    app:layout_constraintTop_toBottomOf="@id/calendarView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"/>
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputMascota"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rounded_input"
+                        android:fontFamily="@font/inika"
+                        android:textSize="16sp"
+                        android:paddingVertical="13dp"
+                />
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Doctor"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="30dp"
+                        app:boxCollapsedPaddingTop="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputDoc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_rounded_input"
+                            android:fontFamily="@font/inika"
+                            android:textSize="16sp"
+                            android:paddingVertical="13dp"
+                    />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnAddAppointment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/dark_details"
-                android:textColor="@color/white"
-                android:fontFamily="@font/inika"
-                android:paddingHorizontal="10dp"
-                android:text="Guardar"
-                android:layout_marginTop="30dp"
-                android:textSize="21sp" />
+                    android:id="@+id/btnAddAppointment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/dark_details"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/inika"
+                    android:paddingHorizontal="10dp"
+                    android:text="Guardar"
+                    android:layout_marginTop="0dp"
+                    android:textSize="21sp" android:minHeight="48dp"/>
 
         </LinearLayout>
 
