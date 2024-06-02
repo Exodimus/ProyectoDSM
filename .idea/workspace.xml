@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4eee9e2-32f3-455a-a276-6a9315de0016" name="Changes" comment="" />
+    <list default="true" id="b4eee9e2-32f3-455a-a276-6a9315de0016" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/PawCareControl/app/src/main/java/com/example/pawcarecontrol/security_fragments/MainFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/PawCareControl/app/src/main/java/com/example/pawcarecontrol/security_fragments/MainFragment.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,9 +21,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2gNqPfXKcZDXVI5PxYakEwLEMTQ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,8 +37,8 @@
     "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/dvarela/Documents/UDB/ProyectoDSM/PawCareControl"
+    "git-widget-placeholder": "Varela1",
+    "last_opened_file_path": "C:/Users/dvarela/Documents/UDB/ProyectoDSMVarela/ProyectoDSM/PawCareControl"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
