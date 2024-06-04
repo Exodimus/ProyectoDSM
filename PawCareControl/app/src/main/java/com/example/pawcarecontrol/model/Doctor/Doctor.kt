@@ -1,4 +1,4 @@
-package com.example.pawcarecontrol.classes
+package com.example.pawcarecontrol.model.Doctor
 
 data class Doctor (
     val name: String,

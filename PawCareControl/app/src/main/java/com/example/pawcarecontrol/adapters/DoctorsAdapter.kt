@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawcarecontrol.R
-import com.example.pawcarecontrol.classes.Doctor
+import com.example.pawcarecontrol.model.Doctor.Doctor
 
 class DoctorsAdapter (private var doctorsList: List<Doctor>,
                       private val context: Context): RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>(){

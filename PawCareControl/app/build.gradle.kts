@@ -50,6 +50,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     //Splash
     implementation("androidx.core:core-splashscreen:1.0.0")
+    //Manejo de .ENV
+    implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
     //Default
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
