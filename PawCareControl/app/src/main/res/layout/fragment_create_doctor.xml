@@ -80,7 +80,7 @@
                     android:layout_height="57dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="Veterinaria"
-                    app:srcCompat="@drawable/view_utils_1"
+                    app:srcCompat="@drawable/ic_female_doctor"
                     android:layout_marginEnd="110dp"/>
 
                 <ImageView
@@ -89,7 +89,7 @@
                     android:layout_height="57dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="Veterinario"
-                    app:srcCompat="@drawable/view_utils_2" />
+                    app:srcCompat="@drawable/ic_male_doctor" />
 
             </LinearLayout>
 

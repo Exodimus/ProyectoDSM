@@ -31,6 +31,14 @@
                 android:textColor="@color/white"
                 android:textSize="30sp" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/doctorsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="56dp"
+                android:clipToPadding="false">
+            </androidx.recyclerview.widget.RecyclerView>
+
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
