@@ -49,25 +49,7 @@ class MainFragment : Fragment() {
         val btnToLogin = root.findViewById<Button>(R.id.btnToLogin)
 
         btnToLogin.setOnClickListener {
-
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    val user = UserClient.service.getUserByEmailAndPass("dani@gmail.com", "password")
-                    // Actualizar la UI en el hilo principal
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Usuario: $user", Toast.LENGTH_LONG)
-                            .show()
-                    }
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG)
-                            .show()
-                        println(e)
-                    }
-                }
-            }
-
-            //findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
         }
         return root
     }
