@@ -65,34 +65,6 @@
                 android:backgroundTint="@color/dark_details"
                 android:textSize="21sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:background="@color/light_details"
-                android:padding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inika"
-                    android:text="¿No tienes cuenta?"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inika"
-                    android:text="Registrate"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/secondary"/>
-
-            </LinearLayout>
-
             <Button
                 android:id="@+id/sign_in_button"
                 android:layout_width="wrap_content"

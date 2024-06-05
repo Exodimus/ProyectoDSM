@@ -50,6 +50,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     //Splash
     implementation("androidx.core:core-splashscreen:1.0.0")
+    //Manejo de .ENV
+    implementation("io.github.cdimascio:dotenv-kotlin:6.2.2")
     //Default
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -68,4 +70,14 @@ dependencies {
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:21.1.1")
+
+    // Add retrofit dependency
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    //Gson converter
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+
 }
