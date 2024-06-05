@@ -39,7 +39,7 @@ class DoctorsAdapter (private var doctorsList: List<Doctor>,
 
     override fun getItemCount() = doctorsList.size
 
-    fun refreshData (newDoctors: List<Doctor>) {
+    fun updateDoctors (newDoctors: List<Doctor>) {
         doctorsList = newDoctors
         notifyDataSetChanged()
     }
