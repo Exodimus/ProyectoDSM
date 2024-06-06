@@ -15,4 +15,7 @@ interface DoctorService {
 
     @DELETE("Usuario/Delete/{id}")
     suspend fun deleteDoctor(@Path("id") id: Int)
+
+    @GET("Usuario/Find/{id}")
+    suspend fun getDoctor(@Path("id") id: Int): Doctor
 }

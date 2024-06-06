@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.pawcarecontrol.R
 import com.example.pawcarecontrol.databinding.FragmentCreateDoctorBinding
 import com.example.pawcarecontrol.model.Doctor.DoctorClient
+import com.example.pawcarecontrol.model.Doctor.Doctor
 import com.example.pawcarecontrol.model.Doctor.PostDoctor
 import com.example.pawcarecontrol.model.User.UserType
 import com.google.android.material.textfield.TextInputEditText
@@ -25,6 +27,22 @@ import java.io.IOException
 class CreateDoctorFragment : Fragment() {
     private lateinit var binding: FragmentCreateDoctorBinding
 
+    private val args: CreateDoctorFragmentArgs by navArgs()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getDoctor { doctor ->
+            doctor?.let{
+            view.findViewById<TextInputEditText>(R.id.inputFirstName).setText(doctor.nombres)
+            view.findViewById<TextInputEditText>(R.id.inputLastName).setText(doctor.apellidos)
+            view.findViewById<TextInputEditText>(R.id.inputEmail).setText(doctor.correo)
+            view.findViewById<TextInputEditText>(R.id.inputPass).setText(doctor.correo)
+            view.findViewById<AutoCompleteTextView>(R.id.autoCompleteGenders).setText(doctor.genero)
+            }?: run {
+                Toast.makeText(requireContext(), "No se pudo obtener la información del doctor", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,42 +72,18 @@ class CreateDoctorFragment : Fragment() {
                 || email.isEmpty()) {
                 Toast.makeText(requireContext(), "Por favor complete todos los campos.", Toast.LENGTH_LONG).show()
             } else {
-                val doctor = PostDoctor(
-                    firstName,
-                    lastName,
-                    password,
-                    email,
-                    1,
-                    UserType(1,2, "Veterinario"))
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        val response: Response<PostDoctor> = DoctorClient.service.createDoctor(doctor).execute()
-
-                        withContext(Dispatchers.Main) {
-                            if (response.isSuccessful) {
-                                Toast.makeText(requireContext(), "Usuario guardado exitosamente", Toast.LENGTH_LONG).show()
-                                // Realizar la acción deseada después de guardar el usuario
-                                findNavController().navigate(R.id.action_createDoctorFragment_to_listDoctorsFragment)
-                            } else {
-                                Toast.makeText(requireContext(), "Error del servidor: ${response.errorBody()?.string()}", Toast.LENGTH_LONG).show()
-                            }
-                        }
-                    } catch (e: HttpException) {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(requireContext(), "Error del servidor: ${e.message}", Toast.LENGTH_LONG).show()
-                        }
-                    } catch (e: IOException) {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(requireContext(), "Error de red. Por favor, revise su conexión.", Toast.LENGTH_LONG).show()
-                        }
-                    } catch (e: Exception) {
-                        withContext(Dispatchers.Main) {
-                            Log.e("CreateDoctorFragment", "Error desconocido: ${e.message}", e)
-                            Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
-                        }
-                    }
+                if(args.DoctorID == -1) {
+                    val doctor = PostDoctor(
+                        firstName,
+                        lastName,
+                        password,
+                        email,
+                        1,
+                        UserType(1,2, "Veterinario"))
+                    createDoctor(doctor)
                 }
+
+
             }
         }
 
@@ -98,5 +92,51 @@ class CreateDoctorFragment : Fragment() {
         }
 
         return root
+    }
+
+    private fun createDoctor(doctor: PostDoctor) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response: Response<PostDoctor> = DoctorClient.service.createDoctor(doctor).execute()
+
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(requireContext(), "Usuario guardado exitosamente", Toast.LENGTH_LONG).show()
+
+                        findNavController().navigate(R.id.action_createDoctorFragment_to_listDoctorsFragment)
+                    } else {
+                        Toast.makeText(requireContext(), "Error del servidor: ${response.errorBody()?.string()}", Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: HttpException) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Error del servidor: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            } catch (e: IOException) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Error de red. Por favor, revise su conexión.", Toast.LENGTH_LONG).show()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Log.e("CreateDoctorFragment", "Error desconocido: ${e.message}", e)
+                    Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun getDoctor(callback: (Doctor?) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val doctor = DoctorClient.service.getDoctor(args.DoctorID)
+                withContext(Dispatchers.Main) {
+                    callback(doctor)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    callback(null)
+                }
+            }
+        }
     }
 }

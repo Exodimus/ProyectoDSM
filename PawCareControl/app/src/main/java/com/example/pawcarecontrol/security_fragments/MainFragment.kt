@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.example.pawcarecontrol.R
-import com.example.pawcarecontrol.model.User.UserClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -19,10 +18,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -76,7 +71,7 @@ class MainFragment : Fragment() {
                 if (task.isSuccessful) {
                     val data = Bundle()
                     data.putString("username", account.displayName)
-                    findNavController().navigate(R.id.action_mainFragment_to_doctors)
+                    findNavController().navigate(R.id.action_mainFragment_to_appointments)
                     Toast.makeText(requireContext(), "Iniciado", Toast.LENGTH_SHORT).show()
 
                 } else {

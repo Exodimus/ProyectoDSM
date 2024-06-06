@@ -8,9 +8,12 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawcarecontrol.R
+import com.example.pawcarecontrol.create_fragments.CreateDoctorFragmentDirections
+import com.example.pawcarecontrol.list_fragments.ListDoctorsFragmentDirections
 import com.example.pawcarecontrol.model.Doctor.Doctor
 import com.example.pawcarecontrol.model.Doctor.DoctorClient
 import com.example.pawcarecontrol.model.Doctor.PostDoctor
@@ -23,7 +26,9 @@ import retrofit2.Response
 import java.io.IOException
 
 class DoctorsAdapter (private var doctorsList: MutableList<Doctor>,
-                      private val context: Context): RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>(){
+                      private val context: Context,
+                      private val navigationControler: NavController
+    ): RecyclerView.Adapter<DoctorsAdapter.DoctorsViewHolder>(){
     class DoctorsViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val ivImage: ImageView = view.findViewById(R.id.ivImage)
         val tvName: TextView = view.findViewById(R.id.tvName)
@@ -51,6 +56,12 @@ class DoctorsAdapter (private var doctorsList: MutableList<Doctor>,
 
         holder.tvName.text = "${genderText} ${doctor.nombres} ${doctor.apellidos}"
         holder.tvPhone.text = doctor.correo
+
+        holder.btnEditDoctor.setOnClickListener{
+            navigationControler.navigate(ListDoctorsFragmentDirections.actionListDoctorsFragmentToCreateDoctorFragment(
+                DoctorID = doctor.id
+            ))
+        }
 
         holder.btnDeleteDoctor.setOnClickListener{
             CoroutineScope(Dispatchers.IO).launch {
