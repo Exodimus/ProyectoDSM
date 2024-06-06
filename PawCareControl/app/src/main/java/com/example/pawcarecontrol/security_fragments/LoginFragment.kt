@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.pawcarecontrol.Global
 import com.example.pawcarecontrol.R
 import com.example.pawcarecontrol.model.User.UserClient
 import com.google.android.material.textfield.TextInputEditText
@@ -22,7 +23,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
-
         val btnLogin = root.findViewById<Button>(R.id.btnLogin)
 
         btnLogin.setOnClickListener{
@@ -36,7 +36,12 @@ class LoginFragment : Fragment() {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(requireContext(), "Inicio de sesión completado", Toast.LENGTH_LONG)
                             .show()
-                        findNavController().navigate(R.id.action_loginFragment_to_doctors)
+                        Global.userType = user.tipoUsuario.nombre_Tipo_Usuario
+                        if (Global.userType == "Administrador") {
+                            findNavController().navigate(R.id.action_loginFragment_to_doctors)
+                        } else {
+                            findNavController().navigate(R.id.action_loginFragment_to_appointments)
+                        }
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {

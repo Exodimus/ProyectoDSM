@@ -4,6 +4,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface DoctorService {
-    @GET("Usuario/All")
+    @GET("Usuario/All/2")
     suspend fun getDoctors(): List<Doctor>
 }

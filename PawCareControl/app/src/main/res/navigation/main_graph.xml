@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_loginFragment_to_doctors"
             app:destination="@id/doctors" />
+        <action
+            android:id="@+id/action_loginFragment_to_appointments"
+            app:destination="@id/appointments" />
     </fragment>
     <navigation android:id="@+id/pets"
         app:startDestination="@id/listPetsFragment">
