@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 
 class ListDoctorsFragment : Fragment() {
     private lateinit var doctorsAdapter: DoctorsAdapter
-    private lateinit var doctors: List<Doctor>
+    private lateinit var doctors: MutableList<Doctor>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +34,8 @@ class ListDoctorsFragment : Fragment() {
 
         val context = requireContext()
 
-        doctorsAdapter = DoctorsAdapter(emptyList(), context)
+        doctors = mutableListOf()
+        doctorsAdapter = DoctorsAdapter(doctors, context)
         recyclerViewDoctors.layoutManager = LinearLayoutManager(context)
         recyclerViewDoctors.adapter = doctorsAdapter
 

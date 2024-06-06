@@ -3,6 +3,7 @@ package com.example.pawcarecontrol.model.Doctor
 import com.example.pawcarecontrol.model.User.UserType
 
 data class Doctor (
+    val id: Int,
     val apellidos: String,
     val correo: String,
     val nombres: String,

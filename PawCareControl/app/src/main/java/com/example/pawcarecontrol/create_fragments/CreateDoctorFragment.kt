@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.fragment.findNavController
-import com.example.pawcarecontrol.Helpers.DatePickerHelper
 import com.example.pawcarecontrol.R
 import com.example.pawcarecontrol.databinding.FragmentCreateDoctorBinding
 import com.example.pawcarecontrol.model.Doctor.DoctorClient
@@ -65,7 +64,7 @@ class CreateDoctorFragment : Fragment() {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        val response: Response<PostDoctor> = DoctorClient.service.saveDoctor(doctor).execute()
+                        val response: Response<PostDoctor> = DoctorClient.service.createDoctor(doctor).execute()
 
                         withContext(Dispatchers.Main) {
                             if (response.isSuccessful) {
