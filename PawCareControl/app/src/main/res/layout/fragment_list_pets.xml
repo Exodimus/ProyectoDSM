@@ -42,7 +42,7 @@
             android:layout_gravity="bottom|end"
             android:contentDescription="Añadir"
             android:text="Crear"
-            app:icon="@drawable/button_add_image"
+            app:icon="@drawable/btn_add_image"
             android:backgroundTint="@color/dark_details"
             android:textColor="@color/white"
             app:iconTint="@color/white"/>

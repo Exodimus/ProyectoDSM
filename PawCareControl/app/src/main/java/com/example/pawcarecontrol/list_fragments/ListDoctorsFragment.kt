@@ -21,6 +21,7 @@ import kotlinx.coroutines.withContext
 
 class ListDoctorsFragment : Fragment() {
     private lateinit var doctorsAdapter: DoctorsAdapter
+    private lateinit var doctors: List<Doctor>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +35,8 @@ class ListDoctorsFragment : Fragment() {
         val context = requireContext()
 
         doctorsAdapter = DoctorsAdapter(emptyList(), context)
-        recyclerViewDoctors.adapter = doctorsAdapter
         recyclerViewDoctors.layoutManager = LinearLayoutManager(context)
+        recyclerViewDoctors.adapter = doctorsAdapter
 
         getDoctors { doctorsList ->
             doctorsAdapter.updateDoctors(doctorsList)
@@ -68,9 +69,9 @@ class ListDoctorsFragment : Fragment() {
     private fun getDoctors(callback: (List<Doctor>) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val doctors = DoctorClient.service.getDoctors()
+                doctors = DoctorClient.service.getDoctors()
                 withContext(Dispatchers.Main) {
-                    callback(doctors)
+                    doctorsAdapter.updateDoctors(doctors)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
