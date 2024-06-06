@@ -27,14 +27,18 @@ class DoctorsAdapter (private var doctorsList: List<Doctor>,
 
     override fun onBindViewHolder(holder: DoctorsViewHolder, position: Int) {
         val doctor = doctorsList[position]
-        holder.tvName.text = doctor.name
-        holder.tvPhone.text = doctor.phone
+        var genderText = ""
 
-        if(doctor.gender == "Femenino") {
+        if(doctor.genero == "Femenino") {
+            genderText = "Dra."
             holder.ivImage.setImageResource(R.drawable.ic_female_doctor)
         } else {
+            genderText = "Dr."
             holder.ivImage.setImageResource(R.drawable.ic_male_doctor)
         }
+
+        holder.tvName.text = "${genderText} ${doctor.nombres} ${doctor.apellidos}"
+        holder.tvPhone.text = doctor.correo
     }
 
     override fun getItemCount() = doctorsList.size

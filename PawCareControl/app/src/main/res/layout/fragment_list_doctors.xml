@@ -34,9 +34,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/doctorsContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingBottom="56dp"
-                android:clipToPadding="false">
+                android:clipToPadding="false"
+                android:layout_marginBottom="60dp">
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
@@ -50,7 +51,7 @@
             android:layout_gravity="bottom|end"
             android:contentDescription="Añadir"
             android:text="Crear"
-            app:icon="@drawable/button_add_image"
+            app:icon="@drawable/btn_add_image"
             android:backgroundTint="@color/dark_details"
             android:textColor="@color/white"
             app:iconTint="@color/white"/>
