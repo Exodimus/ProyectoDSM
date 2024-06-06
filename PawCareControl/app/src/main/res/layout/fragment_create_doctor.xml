@@ -48,180 +48,181 @@
             android:layout_marginStart="10dp"
             app:srcCompat="@drawable/back_utils_4"/>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingVertical="40dp"
-            android:gravity="center_horizontal"
-            android:paddingHorizontal="55dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="@font/inika"
-                android:text="Registro de Doctores"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp"
-                android:gravity="center">
+                android:orientation="vertical"
+                android:paddingVertical="40dp"
+                android:paddingHorizontal="55dp"
+                android:layout_gravity="center_vertical">
 
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="57dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="Veterinaria"
-                    app:srcCompat="@drawable/ic_female_doctor"
-                    android:layout_marginEnd="110dp"/>
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/inika"
+                    android:text="Registro de Doctores"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"/>
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="57dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="Veterinario"
-                    app:srcCompat="@drawable/ic_male_doctor" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Veterinaria"
+                        app:srcCompat="@drawable/ic_female_doctor"
+                        android:layout_marginEnd="110dp"/>
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="Veterinario"
+                        app:srcCompat="@drawable/ic_male_doctor" />
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombres"
+                    android:layout_marginBottom="30dp"
+                    app:boxCollapsedPaddingTop="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rounded_input"
+                        android:fontFamily="@font/inika"
+                        android:textSize="16sp"
+                        android:paddingVertical="13dp"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellidos"
+                    android:layout_marginBottom="30dp"
+                    app:boxCollapsedPaddingTop="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rounded_input"
+                        android:fontFamily="@font/inika"
+                        android:textSize="16sp"
+                        android:paddingVertical="13dp"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Correo"
+                    android:layout_marginBottom="30dp"
+                    app:boxCollapsedPaddingTop="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rounded_input"
+                        android:inputType="textEmailAddress"
+                        android:fontFamily="@font/inika"
+                        android:textSize="16sp"
+                        android:paddingVertical="13dp"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña"
+                    android:layout_marginBottom="30dp"
+                    app:boxCollapsedPaddingTop="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rounded_input"
+                        android:fontFamily="@font/inika"
+                        android:inputType="textPassword"
+                        android:textSize="16sp"
+                        android:paddingVertical="13dp"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputGender"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:hint="Sexo"
+                    app:boxCollapsedPaddingTop="0dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteGenders"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rounded_input"
+                        android:fontFamily="@font/inika"
+                        android:inputType="none"
+                        android:paddingVertical="13dp"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnAddDoctor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/dark_details"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/inika"
+                    android:paddingHorizontal="10dp"
+                    android:text="Guardar"
+                    android:textSize="21sp" />
+
+                <Button
+                    android:id="@+id/btnCancelDoctor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/danger"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/inika"
+                    android:paddingHorizontal="10dp"
+                    android:text="Cancelar"
+                    android:textSize="21sp" />
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nombres"
-                android:layout_marginBottom="30dp"
-                app:boxCollapsedPaddingTop="0dp">
+        </ScrollView>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_input"
-                    android:fontFamily="@font/inika"
-                    android:textSize="16sp"
-                    android:paddingVertical="13dp"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Apellidos"
-                android:layout_marginBottom="30dp"
-                app:boxCollapsedPaddingTop="0dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_input"
-                    android:fontFamily="@font/inika"
-                    android:textSize="16sp"
-                    android:paddingVertical="13dp"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Contraseña"
-                android:layout_marginBottom="30dp"
-                app:boxCollapsedPaddingTop="0dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputPass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_input"
-                    android:fontFamily="@font/inika"
-                    android:inputType="textPassword"
-                    android:textSize="16sp"
-                    android:paddingVertical="13dp"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="DUI"
-                android:layout_marginBottom="30dp"
-                app:boxCollapsedPaddingTop="0dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputDUI"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_input"
-                    android:fontFamily="@font/inika"
-                    android:textSize="16sp"
-                    android:paddingVertical="13dp"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nacimiento"
-                android:layout_marginBottom="30dp"
-                app:boxCollapsedPaddingTop="0dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputBirthday"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_input"
-                    android:fontFamily="@font/inika"
-                    android:paddingVertical="13dp"
-                    android:focusable="false"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputGender"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:hint="Sexo"
-                app:boxCollapsedPaddingTop="0dp">
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoCompleteGenders"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_input"
-                    android:fontFamily="@font/inika"
-                    android:inputType="none"
-                    android:paddingVertical="13dp"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btnAddDoctor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/dark_details"
-                android:textColor="@color/white"
-                android:fontFamily="@font/inika"
-                android:paddingHorizontal="10dp"
-                android:text="Guardar"
-                android:textSize="21sp" />
-
-        </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

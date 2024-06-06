@@ -16,6 +16,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 
 class LoginFragment : Fragment() {
     override fun onCreateView(
@@ -26,30 +28,41 @@ class LoginFragment : Fragment() {
         val btnLogin = root.findViewById<Button>(R.id.btnLogin)
 
         btnLogin.setOnClickListener{
+            val userEmail = root.findViewById<TextInputEditText>(R.id.inputUser).text.toString()
+            val userPass = root.findViewById<TextInputEditText>(R.id.inputPass).text.toString()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    val userEmail = root.findViewById<TextInputEditText>(R.id.inputUser).text.toString()
-                    val userPass = root.findViewById<TextInputEditText>(R.id.inputPass).text.toString()
-                    val user = UserClient.service.getUserByEmailAndPass(userEmail, userPass)
-                    // Actualizar la UI en el hilo principal
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Inicio de sesión completado", Toast.LENGTH_LONG)
-                            .show()
-                        Global.userType = user.tipoUsuario.nombre_Tipo_Usuario
-                        if (Global.userType == "Administrador") {
-                            findNavController().navigate(R.id.action_loginFragment_to_doctors)
-                        } else {
-                            findNavController().navigate(R.id.action_loginFragment_to_appointments)
+            if (userEmail.isEmpty() || userPass.isEmpty()) {
+                Toast.makeText(requireContext(), "Por favor complete todos los campos.", Toast.LENGTH_LONG).show()
+            } else {
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        val user = UserClient.service.getUserByEmailAndPass(userEmail, userPass)
+                        // Actualizar la UI en el hilo principal
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(requireContext(), "Inicio de sesión completado", Toast.LENGTH_LONG)
+                                .show()
+                            Global.userType = user.tipoUsuario.nombre_Tipo_Usuario
+                            if (Global.userType == "Administrador") {
+                                findNavController().navigate(R.id.action_loginFragment_to_doctors)
+                            } else {
+                                findNavController().navigate(R.id.action_loginFragment_to_appointments)
+                            }
+                        }
+                    }catch (e: HttpException) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(requireContext(), "Credenciales incorrectas. Por favor, inténtelo de nuevo.", Toast.LENGTH_LONG).show()
+                        }
+                    } catch (e: IOException) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(requireContext(), "Error de red. Por favor, revise su conexión.", Toast.LENGTH_LONG).show()
+                        }
+                    } catch (e: Exception) {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
                         }
                     }
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG)
-                            .show()
-                        println(e)
-                    }
                 }
+
             }
         }
         return root
