@@ -36,7 +36,7 @@ class CreateDoctorFragment : Fragment() {
             view.findViewById<TextInputEditText>(R.id.inputFirstName).setText(doctor.nombres)
             view.findViewById<TextInputEditText>(R.id.inputLastName).setText(doctor.apellidos)
             view.findViewById<TextInputEditText>(R.id.inputEmail).setText(doctor.correo)
-            view.findViewById<TextInputEditText>(R.id.inputPass).setText(doctor.correo)
+            view.findViewById<TextInputEditText>(R.id.inputPass).setText(doctor.pass)
             view.findViewById<AutoCompleteTextView>(R.id.autoCompleteGenders).setText(doctor.genero)
             }?: run {
                 Toast.makeText(requireContext(), "No se pudo obtener la información del doctor", Toast.LENGTH_LONG).show()
@@ -55,6 +55,10 @@ class CreateDoctorFragment : Fragment() {
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, genders)
         binding.autoCompleteGenders.setAdapter(arrayAdapter)
 
+        if (args.DoctorID != -1) {
+            root.findViewById<TextView>(R.id.tvTitle).setText("Editar registro doctor")
+        }
+
         val btnAddDoctor= root.findViewById<Button>(R.id.btnAddDoctor)
         val btnCancelDoctor = root.findViewById<Button>(R.id.btnCancelDoctor)
 
@@ -72,7 +76,7 @@ class CreateDoctorFragment : Fragment() {
                 || email.isEmpty()) {
                 Toast.makeText(requireContext(), "Por favor complete todos los campos.", Toast.LENGTH_LONG).show()
             } else {
-                if(args.DoctorID == -1) {
+                if (args.DoctorID == -1) {
                     val doctor = PostDoctor(
                         firstName,
                         lastName,
@@ -81,9 +85,16 @@ class CreateDoctorFragment : Fragment() {
                         1,
                         UserType(1,2, "Veterinario"))
                     createDoctor(doctor)
+                } else {
+                    val doctor = PostDoctor(
+                        firstName,
+                        lastName,
+                        password,
+                        email,
+                        1,
+                        UserType(1,2, "Veterinario"))
+                    updateDoctor(doctor)
                 }
-
-
             }
         }
 
@@ -103,6 +114,36 @@ class CreateDoctorFragment : Fragment() {
                     if (response.isSuccessful) {
                         Toast.makeText(requireContext(), "Usuario guardado exitosamente", Toast.LENGTH_LONG).show()
 
+                        findNavController().navigate(R.id.action_createDoctorFragment_to_listDoctorsFragment)
+                    } else {
+                        Toast.makeText(requireContext(), "Error del servidor: ${response.errorBody()?.string()}", Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: HttpException) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Error del servidor: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            } catch (e: IOException) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Error de red. Por favor, revise su conexión.", Toast.LENGTH_LONG).show()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Log.e("CreateDoctorFragment", "Error desconocido: ${e.message}", e)
+                    Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun updateDoctor(doctor: PostDoctor) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = DoctorClient.service.updateDoctor(args.DoctorID, doctor)
+
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(requireContext(), "Usuario guardado exitosamente", Toast.LENGTH_LONG).show()
                         findNavController().navigate(R.id.action_createDoctorFragment_to_listDoctorsFragment)
                     } else {
                         Toast.makeText(requireContext(), "Error del servidor: ${response.errorBody()?.string()}", Toast.LENGTH_LONG).show()

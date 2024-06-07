@@ -8,6 +8,7 @@ data class Doctor (
     val correo: String,
     val nombres: String,
     val genero: String,
+    val pass: String,
 )
 
 data class PostDoctor (
