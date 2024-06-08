@@ -13,8 +13,8 @@
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_doctors"
-            app:destination="@id/doctors" />
+            android:id="@+id/action_mainFragment_to_appointments"
+            app:destination="@id/appointments" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_loginFragment_to_doctors"
             app:destination="@id/doctors" />
+        <action
+            android:id="@+id/action_loginFragment_to_appointments"
+            app:destination="@id/appointments" />
     </fragment>
     <navigation android:id="@+id/pets"
         app:startDestination="@id/listPetsFragment">
@@ -98,6 +101,9 @@
             <action
                 android:id="@+id/action_createDoctorFragment_to_listDoctorsFragment"
                 app:destination="@id/listDoctorsFragment" />
+            <argument
+                android:name="DoctorID"
+                app:argType="integer" />
         </fragment>
         <action
             android:id="@+id/action_global_pets"

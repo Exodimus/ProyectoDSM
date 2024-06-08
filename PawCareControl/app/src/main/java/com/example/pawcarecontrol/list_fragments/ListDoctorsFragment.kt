@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawcarecontrol.R
 import com.example.pawcarecontrol.adapters.DoctorsAdapter
+import com.example.pawcarecontrol.create_fragments.CreateDoctorFragmentDirections
 import com.example.pawcarecontrol.model.Doctor.Doctor
 import com.example.pawcarecontrol.model.Doctor.DoctorClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 class ListDoctorsFragment : Fragment() {
     private lateinit var doctorsAdapter: DoctorsAdapter
-    private lateinit var doctors: List<Doctor>
+    private lateinit var doctors: MutableList<Doctor>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,10 +32,12 @@ class ListDoctorsFragment : Fragment() {
         val recyclerViewDoctors = root.findViewById<RecyclerView>(R.id.doctorsContainer)
         val btnCreateDoctor = root.findViewById<ExtendedFloatingActionButton>(R.id.btnCreateDoctor)
         val bottomNavigation = root.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val navigationController = findNavController()
 
         val context = requireContext()
 
-        doctorsAdapter = DoctorsAdapter(emptyList(), context)
+        doctors = mutableListOf()
+        doctorsAdapter = DoctorsAdapter(doctors, context, navigationController)
         recyclerViewDoctors.layoutManager = LinearLayoutManager(context)
         recyclerViewDoctors.adapter = doctorsAdapter
 
@@ -43,7 +46,9 @@ class ListDoctorsFragment : Fragment() {
         }
 
         btnCreateDoctor.setOnClickListener {
-            findNavController().navigate(R.id.action_listDoctorsFragment_to_createDoctorFragment)
+            navigationController.navigate(ListDoctorsFragmentDirections.actionListDoctorsFragmentToCreateDoctorFragment(
+                DoctorID = -1
+            ))
         }
 
         bottomNavigation.selectedItemId = R.id.page_1
@@ -52,11 +57,11 @@ class ListDoctorsFragment : Fragment() {
             when (item.itemId) {
                 R.id.page_1 -> true
                 R.id.page_2 -> {
-                    findNavController().navigate(R.id.action_global_appointments)
+                    navigationController.navigate(R.id.action_global_appointments)
                     true
                 }
                 R.id.page_3 -> {
-                    findNavController().navigate(R.id.action_global_pets)
+                    navigationController.navigate(R.id.action_global_pets)
                     true
                 }
                 else -> false
