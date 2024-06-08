@@ -10,7 +10,9 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
+import com.example.pawcarecontrol.Global
 import com.example.pawcarecontrol.R
+import com.example.pawcarecontrol.model.User.UserClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -18,6 +20,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 
 class MainFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -69,10 +77,44 @@ class MainFragment : Fragment() {
             val credential = GoogleAuthProvider.getCredential(account.idToken, null)
             auth.signInWithCredential(credential).addOnCompleteListener {
                 if (task.isSuccessful) {
-                    val data = Bundle()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            val user = UserClient.service.getUserByEmail(account.email.toString())
+                            if(user!=null){
+                                // Actualizar la UI en el hilo principal
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(requireContext(), "Inicio de sesión completado", Toast.LENGTH_LONG)
+                                        .show()
+                                    Global.userType = user.tipoUsuario.nombre_Tipo_Usuario
+                                    if (Global.userType == "Administrador") {
+                                        findNavController().navigate(R.id.action_loginFragment_to_doctors)
+                                    } else {
+                                        findNavController().navigate(R.id.action_mainFragment_to_appointments)
+                                    }
+                                }
+                            }else{
+                                Toast.makeText(requireContext(), "El usuario no esta registrado", Toast.LENGTH_LONG)
+                                    .show()
+                            }
+
+                        }catch (e: HttpException) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(requireContext(), "Acceso Denegado: Revise las credenciales o pide que activen tu usuario.", Toast.LENGTH_LONG).show()
+                            }
+                        } catch (e: IOException) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(requireContext(), "Error de red. Por favor, revise su conexión.", Toast.LENGTH_LONG).show()
+                            }
+                        } catch (e: Exception) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                    /*val data = Bundle()
                     data.putString("username", account.displayName)
                     findNavController().navigate(R.id.action_mainFragment_to_appointments)
-                    Toast.makeText(requireContext(), "Iniciado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Iniciado", Toast.LENGTH_SHORT).show()*/
 
                 } else {
                     Toast.makeText(requireContext(), "Iniciado", Toast.LENGTH_SHORT).show()

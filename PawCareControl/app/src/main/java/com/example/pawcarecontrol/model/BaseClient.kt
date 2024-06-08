@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 open class BaseClient {
     private val dotenv: Dotenv = dotenv{
         directory = "./assets"
-        filename = "env" // instead of '.env', use 'env'
+        filename = "env" // instead of 'env', use 'env'
     }
 
     protected val retrofit = Retrofit.Builder()

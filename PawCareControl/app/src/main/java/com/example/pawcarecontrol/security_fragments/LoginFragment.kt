@@ -50,7 +50,7 @@ class LoginFragment : Fragment() {
                         }
                     }catch (e: HttpException) {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(requireContext(), "Credenciales incorrectas. Por favor, inténtelo de nuevo.", Toast.LENGTH_LONG).show()
+                            Toast.makeText(requireContext(), "Acceso Denegado: Revise las credenciales o pide que activen tu usuario.", Toast.LENGTH_LONG).show()
                         }
                     } catch (e: IOException) {
                         withContext(Dispatchers.Main) {
