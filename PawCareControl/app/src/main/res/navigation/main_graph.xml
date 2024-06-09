@@ -58,6 +58,15 @@
     <navigation android:id="@+id/appointments"
         app:startDestination="@id/listAppointmentsFragment">
         <fragment
+            android:id="@+id/createAttendantFragment"
+            android:name="com.example.pawcarecontrol.create_fragments.CreateAttendantFragment"
+            android:label="fragment_create_attendant"
+            tools:layout="@layout/fragment_create_attendant" >
+            <argument
+                android:name="AttendantID"
+                app:argType="integer" />
+        </fragment>
+        <fragment
             android:id="@+id/listAppointmentsFragment"
             android:name="com.example.pawcarecontrol.list_fragments.ListAppointmentsFragment"
             android:label="ListAppointmentsFragment"
@@ -65,6 +74,9 @@
             <action
                 android:id="@+id/action_listAppointmentsFragment_to_createAppointmentFragment"
                 app:destination="@id/createAppointmentFragment" />
+            <action
+                android:id="@+id/action_listAppointmentsFragment_to_createAttendantFragment"
+                app:destination="@id/createAttendantFragment" />
         </fragment>
         <fragment
             android:id="@+id/createAppointmentFragment"
@@ -81,6 +93,9 @@
         <action
             android:id="@+id/action_global_doctors2"
             app:destination="@id/doctors" />
+        <action
+            android:id="@+id/action_global_attendants2"
+            app:destination="@id/attendants" />
     </navigation>
     <navigation android:id="@+id/doctors"
         app:startDestination="@id/listDoctorsFragment">
@@ -111,5 +126,13 @@
         <action
             android:id="@+id/action_global_appointments"
             app:destination="@id/appointments" />
+        <action
+            android:id="@+id/action_global_attendants"
+            app:destination="@id/attendants" />
     </navigation>
+    <navigation android:id="@+id/attendants"
+        >
+
+    </navigation>
+
 </navigation>

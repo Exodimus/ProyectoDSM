@@ -15,4 +15,9 @@
         android:enabled="true"
         android:icon="@drawable/menu_mascotas"
         android:title="Mascotas"/>
+    <item
+        android:id="@+id/page_4"
+        android:enabled="true"
+        android:icon="@drawable/menu_encargado"
+        android:title="Encargado"/>
 </menu>

@@ -76,6 +76,12 @@ class ListAppointmentsFragment : Fragment() {
                     true
                 }
 
+                R.id.page_4->{
+                    //findNavController().navigate(ListAppointmentsFragmentDirections.action_listAppointmentsFragment_to_createAppointmentFragment
+                     //   (DoctorID = -1))
+                    true
+                }
+
                 else -> false
             }
         }

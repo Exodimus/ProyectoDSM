@@ -15,6 +15,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
         <activity
+            android:name=".create_fragments.CreateAttendantFragment"
+            android:exported="false" />
+        <activity
             android:name=".list_fragments.ListPetsFragment"
             android:exported="false" />
         <activity
