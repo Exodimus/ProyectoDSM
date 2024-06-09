@@ -74,7 +74,7 @@ class CreateAppointmentFragment : Fragment() {
         return root
     }
 
-    /*private fun loadMascotas() {
+    /*private fun getMascotas() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = DoctorClient.service.getDoctors()

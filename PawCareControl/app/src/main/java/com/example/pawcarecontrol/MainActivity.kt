@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         Thread.sleep(1000)
         installSplashScreen()
 
-        setContentView(R.layout.fragment_create_appointment)
+        setContentView(R.layout.fragment_list_appointments)
 
     }
 }

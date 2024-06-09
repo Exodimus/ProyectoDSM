@@ -5,69 +5,65 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pawcarecontrol.Global
 import com.example.pawcarecontrol.R
+import com.example.pawcarecontrol.adapters.AppointmentsAdapter
+import com.example.pawcarecontrol.create_fragments.CreateDoctorFragmentArgs
+import com.example.pawcarecontrol.model.Appointment.Appointment
+import com.example.pawcarecontrol.model.Appointment.AppointmentClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ListAppointmentsFragment : Fragment() {
-    data class Appointment(
-        val date: String,
-        val doctor: String,
-        val reason: String
-    )
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: AppointmentsAdapter
+    private val appointmentsList = mutableListOf<Appointment>()
+    private val args: CreateDoctorFragmentArgs by navArgs()
 
-    private val Appointments = listOf(
-        Appointment("2024-05-12", "Dr. García", "Consulta de rutina"),
-        Appointment("2024-05-15", "Dra. López", "Control de presión arterial"),
-        Appointment("2024-05-18", "Dr. Martínez", "Seguimiento de tratamiento")
-    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_list_appointments, container, false)
-
         val btnCreateAppointment = root.findViewById<ExtendedFloatingActionButton>(R.id.btnCreateAppointment)
-        val layoutAppointments = root.findViewById<LinearLayout>(R.id.layoutAppointments)
 
-        for (dataAppointment in Appointments) {
-            val appointmentView = layoutInflater.inflate(R.layout.item_appointment, null)
+        recyclerView = root.findViewById(R.id.recyclerViewAppointments)
+        adapter = AppointmentsAdapter(requireContext(), appointmentsList)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
 
-            // Vistas del texto dentro del layout de la cita
-            val textViewDate = appointmentView.findViewById<TextView>(R.id.textViewDate)
-            val textViewDoctor = appointmentView.findViewById<TextView>(R.id.textViewDoctor)
-            val textViewReason = appointmentView.findViewById<TextView>(R.id.textViewReason)
+        getPendingAppointmentsByDoctor()
 
-            textViewDate.text = "Fecha: ${dataAppointment.date}"
-            textViewDoctor.text = "Doctor: ${dataAppointment.doctor}"
-            textViewReason.text = "Motivo: ${dataAppointment.reason}"
-
-            layoutAppointments.addView(appointmentView)
-        }
-
-        btnCreateAppointment.setOnClickListener{
+        btnCreateAppointment.setOnClickListener {
             findNavController().navigate(R.id.action_listAppointmentsFragment_to_createAppointmentFragment)
         }
 
         val bottomNavigation = root.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        if(Global.userType.toString() != "Administrador") {
+        if (Global.userType.toString() != "Administrador") {
             bottomNavigation.menu.findItem(R.id.page_1).isVisible = false
         }
         bottomNavigation.selectedItemId = R.id.page_2
 
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.page_1 -> {
                     findNavController().navigate(R.id.action_global_doctors2)
                     true
                 }
 
                 R.id.page_2 -> {
+                    findNavController().navigate(R.id.action_global_appointments2)
                     true
                 }
 
@@ -80,8 +76,27 @@ class ListAppointmentsFragment : Fragment() {
             }
         }
 
-
-
         return root
     }
+
+    private fun getPendingAppointmentsByDoctor() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = AppointmentClient.service.getPendingAppointmentsByDoctor(args.DoctorID)
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        val appointments = response.body() ?: emptyList()
+                        adapter.updateAppointments(appointments)
+                    } else {
+                        Toast.makeText(context, "Error al cargar las citas", Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
 }

@@ -15,7 +15,7 @@ interface AppointmentService {
     suspend fun getAllAppointmentsByDoctor(@Path("id") doctorId: Int, @Path("idE") idE: Int): MutableList<Appointment>
 
     @GET("${route}/All_Citas_Doctor_Pendientes/{id}")
-    suspend fun getPendingAppointmentsByDoctor(@Path("id") doctorId: Int): MutableList<Appointment>
+    suspend fun getPendingAppointmentsByDoctor(@Path("id") doctorId: Int): Response<List<Appointment>>
 
     @GET("${route}/All_Citas_Doctor_Finalizadas/{id}")
     suspend fun getCompletedAppointmentsByDoctor(@Path("id") doctorId: Int): MutableList<Appointment>
