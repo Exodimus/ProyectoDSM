@@ -8,10 +8,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Thread.sleep(1000)
+        Thread.sleep(3000)
         installSplashScreen()
 
-        setContentView(R.layout.fragment_list_appointments)
+        setContentView(R.layout.activity_main)
 
     }
 }
