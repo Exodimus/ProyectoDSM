@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.pawcarecontrol.Global
 import com.example.pawcarecontrol.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -24,6 +26,10 @@ class ListPetsFragment : Fragment() {
         }
 
         val bottomNavigation = root.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        if(Global.userType.toString() != "Administrador") {
+            bottomNavigation.menu.findItem(R.id.page_1).isVisible = false
+        }
 
         bottomNavigation.selectedItemId = R.id.page_3
 
